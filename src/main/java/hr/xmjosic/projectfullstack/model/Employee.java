@@ -2,8 +2,9 @@ package hr.xmjosic.projectfullstack.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "employee")
 public class Employee implements Serializable {
 
     @Id
@@ -21,23 +22,58 @@ public class Employee implements Serializable {
             updatable = false
     )
     private Long id;
+
+    @Column(
+            nullable = false
+    )
     private String firstName;
+
+    @Column(
+            nullable = false
+    )
     private String lastName;
+
+    @Column(
+            nullable = false,
+            unique = true
+    )
     private String email;
     private String department;
     private String phone;
     private String imageUrl;
 
+    @Column(
+            nullable = false
+    )
+    private String uuid;
+
+    @Column(
+            nullable = false
+    )
+    private LocalDateTime createdTimestamp;
+    private LocalDateTime updatedTimestamp;
+
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String email, String department, String phone, String imageUrl) {
+    public Employee(String firstName,
+                    String lastName,
+                    String email,
+                    String department,
+                    String phone,
+                    String imageUrl,
+                    String uuid,
+                    LocalDateTime createdTimestamp,
+                    LocalDateTime updatedTimestamp) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.department = department;
         this.phone = phone;
         this.imageUrl = imageUrl;
+        this.uuid = uuid;
+        this.createdTimestamp = createdTimestamp;
+        this.updatedTimestamp = updatedTimestamp;
     }
 
     public Long getId() {
@@ -96,6 +132,30 @@ public class Employee implements Serializable {
         this.imageUrl = imageUrl;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public LocalDateTime getCreatedTimestamp() {
+        return createdTimestamp;
+    }
+
+    public void setCreatedTimestamp(LocalDateTime createdTimestamp) {
+        this.createdTimestamp = createdTimestamp;
+    }
+
+    public LocalDateTime getUpdatedTimestamp() {
+        return updatedTimestamp;
+    }
+
+    public void setUpdatedTimestamp(LocalDateTime updatedTimestamp) {
+        this.updatedTimestamp = updatedTimestamp;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -106,7 +166,9 @@ public class Employee implements Serializable {
                 ", department='" + department + '\'' +
                 ", phone='" + phone + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", uuid='" + uuid + '\'' +
+                ", createdTimestamp=" + createdTimestamp +
+                ", updatedTimestamp=" + updatedTimestamp +
                 '}';
     }
-
 }
