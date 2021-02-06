@@ -40,7 +40,7 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee by id " + uuid + " was not found."));
     }
 
-    public void deleteEmployee(String uuid) {
-        employeeRepository.deleteEmployeeByUuid(uuid);
+    public void deleteEmployee(String id) {
+        employeeRepository.deleteEmployeeById(id);
     }
 }

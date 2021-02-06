@@ -44,9 +44,9 @@ public class EmployeeController {
         return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{uuid}")
-    public ResponseEntity<?> deleteEmployee(@PathVariable("uuid") String uuid) {
-        employeeService.deleteEmployee(uuid);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") String id) {
+        employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
