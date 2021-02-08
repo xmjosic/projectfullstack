@@ -5,6 +5,7 @@ import hr.xmjosic.projectfullstack.model.Employee;
 import hr.xmjosic.projectfullstack.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -40,7 +41,8 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFoundException("Employee by id " + uuid + " was not found."));
     }
 
-    public void deleteEmployee(String id) {
-        employeeRepository.deleteEmployeeById(id);
+    @Transactional
+    public void deleteEmployee(String uuid) {
+        employeeRepository.deleteEmployeeByUuid(uuid);
     }
 }
